@@ -1,7 +1,8 @@
 /**@module mail-listener5
  * @author Matej Malicek <matej@malicek.co>
  * @version 1.0.0
- * @date 4 March 2019
+ * Modified by Damon Tajeddini
+ * @date 26.12.2019
  */
 
  // Require statements
@@ -59,6 +60,10 @@ class MailListener extends EventEmitter {
     this.imap.end();
   }
 
+  state() {
+    return this.imap.state;
+  }
+ 
   imapReady() {
     this.imap.openBox(this.mailbox, false, (error, mailbox) => {
       if (error)
