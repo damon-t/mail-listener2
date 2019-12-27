@@ -63,6 +63,14 @@ class MailListener extends EventEmitter {
   state() {
     return this.imap.state;
   }
+  
+  restart() {
+    console.log("Restart MailListener...")
+    this.imap.removeAllListeners('mail');
+    this.imap.removeAllListeners('update');
+    this.imap.connect();
+    this.parseUnread.call(this);
+  }
  
   imapReady() {
     this.imap.openBox(this.mailbox, false, (error, mailbox) => {
